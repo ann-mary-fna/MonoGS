@@ -26,6 +26,3 @@ lpips
 rich
 ruff
 
-# Local or submodule installs
--e submodules/simple-knn
--e submodules/diff-gaussian-rasterization
