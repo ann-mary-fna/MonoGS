@@ -50,7 +50,7 @@ class TUMParser:
         self.input_folder = input_folder
         self.load_poses(self.input_folder, frame_rate=32)
         self.n_img = len(self.color_paths)
-
+# np.unicode_ will throw an error, change to np.str_
     def parse_list(self, filepath, skiprows=0):
         data = np.loadtxt(filepath, delimiter=" ", dtype=np.unicode_, skiprows=skiprows)
         return data
