@@ -2,6 +2,7 @@ import random
 import time
 
 import torch
+torch.set_float32_matmul_precision('medium')
 import torch.multiprocessing as mp
 from tqdm import tqdm
 
@@ -88,7 +89,7 @@ class BackEnd(mp.Process):
     def initialize_map(self, cur_frame_idx, viewpoint):
         for mapping_iteration in range(self.init_itr_num):
             self.iteration_count += 1
-            with torch.autocast(device_type='cuda', dtype=torch.float16):
+            with torch.autocast(device_type='cuda', dtype=torch.float16, enalbled =False ):
                 render_pkg = render(
                     viewpoint, self.gaussians, self.pipeline_params, self.background
                 )
@@ -171,7 +172,7 @@ class BackEnd(mp.Process):
             for cam_idx in range(len(current_window)):
                 viewpoint = viewpoint_stack[cam_idx]
                 keyframes_opt.append(viewpoint)
-                with torch.autocast(device_type='cuda', dtype=torch.float16):
+                with torch.autocast(device_type='cuda', dtype=torch.float16, enalbled =False ):
                     render_pkg = render(
                         viewpoint, self.gaussians, self.pipeline_params, self.background
                     )
@@ -203,7 +204,7 @@ class BackEnd(mp.Process):
 
             for cam_idx in torch.randperm(len(random_viewpoint_stack))[:2]:
                 viewpoint = random_viewpoint_stack[cam_idx]
-                with torch.autocast(device_type='cuda', dtype=torch.float16):
+                with torch.autocast(device_type='cuda', dtype=torch.float16, enabled=False):
                     render_pkg = render(
                         viewpoint, self.gaussians, self.pipeline_params, self.background
                     )
@@ -332,7 +333,7 @@ class BackEnd(mp.Process):
                 random.randint(0, len(viewpoint_idx_stack) - 1)
             )
             viewpoint_cam = self.viewpoints[viewpoint_cam_idx]
-            with torch.autocast(device_type='cuda', dtype=torch.float16):
+            with torch.autocast(device_type='cuda', dtype=torch.float16, enabled=False):
                 render_pkg = render(
                     viewpoint_cam, self.gaussians, self.pipeline_params, self.background
                 )
