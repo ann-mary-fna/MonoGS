@@ -89,7 +89,7 @@ class BackEnd(mp.Process):
     def initialize_map(self, cur_frame_idx, viewpoint):
         for mapping_iteration in range(self.init_itr_num):
             self.iteration_count += 1
-            with torch.autocast(device_type='cuda', dtype=torch.float16, enalbled =False ):
+            with torch.autocast(device_type='cuda', dtype=torch.float16, enabled =False ):
                 render_pkg = render(
                     viewpoint, self.gaussians, self.pipeline_params, self.background
                 )
@@ -172,7 +172,7 @@ class BackEnd(mp.Process):
             for cam_idx in range(len(current_window)):
                 viewpoint = viewpoint_stack[cam_idx]
                 keyframes_opt.append(viewpoint)
-                with torch.autocast(device_type='cuda', dtype=torch.float16, enalbled =False ):
+                with torch.autocast(device_type='cuda', dtype=torch.float16, enabled =False ):
                     render_pkg = render(
                         viewpoint, self.gaussians, self.pipeline_params, self.background
                     )
