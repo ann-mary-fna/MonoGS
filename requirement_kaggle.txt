@@ -3,9 +3,9 @@
 # pip==22.3.1
 
 # CUDA and PyTorch packages
-torch  ==1.12.1+cu116
-torchvision  ==0.13.1+cu116
-torchaudio ==0.12.1+cu116
+# torch  ==1.12.1+cu116
+# torchvision  ==0.13.1+cu116
+# torchaudio ==0.12.1+cu116
 # Note: If pip doesn’t recognize "+cu116" build, use the official PyTorch wheel URL instead (see note below)
 
 # Other dependencies
